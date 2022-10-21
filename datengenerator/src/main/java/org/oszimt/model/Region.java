@@ -34,7 +34,7 @@ public class Region {
                   String line;
                   while ((line=reader.readLine()) != null){
                       if(!line.equals("")){
-                          unkategorizedNames.add(line);
+                          unkategorizedNames.add(line.trim());
                       }
 
                 }
@@ -52,6 +52,8 @@ public class Region {
           }
           laender.add(new Land(vornamen,namen,land));
       }
+
+      System.out.println("lil");
   }
   
 }
