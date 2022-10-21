@@ -1,11 +1,15 @@
 package org.oszimt;
 
 
+import org.oszimt.model.Region;
+
+import java.nio.file.Paths;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Region afrika = new Region(Paths.get(".","regionen","Afrika").toAbsolutePath().normalize().toString());
     }
 
     
