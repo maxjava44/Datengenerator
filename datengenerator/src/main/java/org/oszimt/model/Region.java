@@ -44,7 +44,6 @@ public class Region {
 
               if(file.getName().split("_")[1].startsWith("Vorname")){
                   vornamen.add(new Vornamen(unkategorizedNames,file.getName().split("_")[2].startsWith("Female")));
-                  System.out.println(file.getName().split("_")[2]);
               }else {
                   namen.add(new Namen(unkategorizedNames));
               }
@@ -52,8 +51,13 @@ public class Region {
           }
           laender.add(new Land(vornamen,namen,land));
       }
-
-      System.out.println("lil");
   }
-  
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Land> getLaender() {
+        return laender;
+    }
 }
