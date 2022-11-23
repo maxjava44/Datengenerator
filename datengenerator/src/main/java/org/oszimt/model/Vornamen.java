@@ -10,4 +10,20 @@ public class Vornamen {
         this.female = female;
         this.vornamen = vornamen;
     }
+
+    public boolean getFemale() {
+        return female;
+    }
+
+    public void setFemale(boolean female) {
+        this.female = female;
+    }
+
+    public ArrayList<String> getVornamen() {
+        return vornamen;
+    }
+
+    public void setVornamen(ArrayList<String> vornamen) {
+        this.vornamen = vornamen;
+    }
 }

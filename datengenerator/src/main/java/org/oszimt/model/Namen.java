@@ -11,4 +11,11 @@ public class Namen {
     }
 
 
+    public ArrayList<String> getNamen() {
+        return namen;
+    }
+
+    public void setNamen(ArrayList<String> namen) {
+        this.namen = namen;
+    }
 }

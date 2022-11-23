@@ -1,10 +1,13 @@
 package org.oszimt;
 
 
+import org.oszimt.controller.GenerateNames;
+import org.oszimt.model.Land;
 import org.oszimt.model.Region;
+import org.oszimt.view.MainWindow;
 
 import java.io.File;
-import java.io.FileFilter;
+
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +22,16 @@ public class App
         if(regionFiles != null){
             Arrays.stream(regionFiles).forEach(file -> regions.add(new Region(file.toPath().toAbsolutePath().normalize().toString())));
         }
-        System.out.println(regions);
+        for(Region region : regions) {
+            for(Land land : region.getLaender()){
+                if(land.getLandName().equals("Argentinien")){
+                    Arrays.stream(GenerateNames.generateNames(land, 30,true)).forEach(System.out::println);
+                }
+            }
+        }
+
+        new MainWindow();
+
     }
 
     

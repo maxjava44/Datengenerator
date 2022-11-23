@@ -27,7 +27,7 @@ public class Region {
 
       for(String land : laenderFiles.keySet()){
           ArrayList<Vornamen> vornamen = new ArrayList<>();
-          ArrayList<Namen> namen = new ArrayList<>();
+          Namen namen = null;
           for(File file : laenderFiles.get(land)){
               ArrayList<String> unkategorizedNames = new ArrayList<>();
               try (BufferedReader reader = Files.newBufferedReader(file.toPath())){
@@ -42,10 +42,10 @@ public class Region {
                   e.printStackTrace();
               }
 
-              if(file.getName().split("_")[1].startsWith("Vorname")){
+              if(!file.getName().contains("DS_Store") && file.getName().split("_")[1].startsWith("Vorname")){
                   vornamen.add(new Vornamen(unkategorizedNames,file.getName().split("_")[2].startsWith("Female")));
               }else {
-                  namen.add(new Namen(unkategorizedNames));
+                  namen = new Namen(unkategorizedNames);
               }
 
           }
