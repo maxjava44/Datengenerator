@@ -6,37 +6,28 @@ import org.oszimt.model.Region;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RegionWindow extends JPanel {
 
-    public RegionWindow(Region region) {
+    Region region = null;
+
+    public RegionWindow(MainWindow mainWindow) {
         super();
-        ActionListener callResultWindow = (e -> {
+    }
+
+    public void setRegion(Region region){
+        this.region = region;
+        JPanel contentContainer = new JPanel(new BorderLayout());
+        JPanel countryPanel = new JPanel(new GridLayout(0,3));
+        if(region != null) {
             List<Land> countries = region.getLaender();
             for(Land land : countries) {
-                if(land.getLandName().equals(e.getActionCommand())){
-                    Container bContainer = ((Button)e.getSource()).getParent();
-                    bContainer.removeAll();
-                    ((Button)e.getSource()).getParent().add(new ResultWindow(land,true,30));
-                }
+                Button landBtn = new Button(land.getLandName());
+                countryPanel.add(landBtn);
             }
-        });
-        List<Land> countries = region.getLaender();
-        JPanel contentContainer = new JPanel(new BorderLayout());
-        JPanel countryPanel = new JPanel(new GridLayout(5,0));
-        for(Land land : countries) {
-            Button landBtn = new Button(land.getLandName());
-            landBtn.addActionListener(callResultWindow);
-            countryPanel.add(landBtn);
         }
-        contentContainer.add(countryPanel);
+        contentContainer.add(countryPanel,BorderLayout.CENTER);
         add(contentContainer);
-        setSize(600, 500);
-        setVisible(true);
     }
 }
