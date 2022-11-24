@@ -12,25 +12,34 @@ public class ResultWindow extends JPanel {
     Land chosenCountry = null;
     int n = 0;
     Boolean female = null;
+    MainWindow mainWindow;
 
 
     public ResultWindow(MainWindow mainWindow) {
-        super();
-        ActionListener callMainWindow = (e -> e.getWhen());
-        JPanel contentContainer = new JPanel(new BorderLayout());
-        JPanel namenPanel = new JPanel(new GridLayout(1,0));
-        if(chosenCountry != null && n != 0 && female != null){
-            for(String name : GenerateNames.generateNames(chosenCountry,n,female)){
-                namenPanel.add(new Label(name));
-            }
+        super(new BorderLayout());
+        this.mainWindow = mainWindow;
+    }
+
+    public void setResult(Land chosenCountry,int n,boolean female) {
+        ActionListener callMainWindow = (e -> mainWindow.switchToMain());
+        JTextArea f = new JTextArea();
+        f.setEditable(false);
+        f.setBackground(null);
+        f.setBorder(null);
+
+        String text = "";
+
+        for(String name : GenerateNames.generateNames(chosenCountry,n,female)){
+            text += name + System.lineSeparator();
         }
-        contentContainer.add(namenPanel,BorderLayout.CENTER);
+        f.setText(text);
+        JScrollPane scrollPain = new JScrollPane(f);
+        f.setCaretPosition(0);
+        add(scrollPain,BorderLayout.CENTER);
+
         Button backBtn = new Button("Zurück zum Anfang");
         backBtn.addActionListener(callMainWindow);
-        contentContainer.add(backBtn);
-        add(contentContainer);
-        setSize(600, 500);
-        setVisible(true);
+        add(backBtn,BorderLayout.SOUTH);
     }
 
 }

@@ -31,7 +31,7 @@ public class MainWindow extends JFrame{
         cards.add("result",resultWindow);
         getContentPane().setLayout(new BorderLayout());
         add(cards,BorderLayout.CENTER);
-        setSize(700, 600);
+        setSize(700, 700);
         setVisible(true);
         layout.show(cards, "main");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,8 +44,19 @@ public class MainWindow extends JFrame{
         cards.add("main",mPanel);
     }
 
-    public void switchToResult(){
+    public void switchToResult(Land chosenCountry,int n,boolean female){
+        resultWindow.setResult(chosenCountry,n,female);
+        layout.show(cards,"result");
+        cards.remove(regionWindow);
+        regionWindow = new RegionWindow(this);
+        cards.add("region",regionWindow);
+    }
 
+    public void switchToMain() {
+        layout.show(cards,"main");
+        cards.remove(resultWindow);
+        resultWindow = new ResultWindow(this);
+        cards.add("result",resultWindow);
     }
 
     
